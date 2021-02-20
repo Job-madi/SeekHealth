@@ -6,6 +6,9 @@ import random
 from datetime import datetime
 
 
+# dldd
+
+
 client = discord.Client()
 sad_words = ["sad", "depressed", "unhappy", "angry", "miserable"]
 a=0
