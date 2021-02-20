@@ -35,7 +35,7 @@ async def on_message(message):
     await message.channel.send(random.choice(starter_encouragements))
   
   if message.content.startswith('seekhealth'):
-      await message.channel.send("Here is a list of commands you can use for this bot\n\n!bmi - to calculate you body mass index and tell if its in the acceptable range or not\n\n!diet - to tell you how much should be your daily calorie intake according to your needs\n\n!meditate - to let you meditate and calculate the duration for which you meditated\n\n!playmusic - play a playlist to according to your choice for either meditation, yoga or workout")
+      await message.channel.send("Here is a list of commands you can use for this bot\n\n!bmi - to calculate you body mass index and tell if its in the acceptable range or not\n\n!diet - to tell you how much should be your daily calorie intake according to your needs\n\n!meditate - to let you meditate and calculate the duration for which you meditated\n  !startmeditation - start meditation\n  !stopmeditation - stop meditation and see the duration for which you meditated\n\n!playmusic - play a playlist to according to your choice for either meditation, yoga or workout")
 
   elif message.content.startswith('!inspire'):
     quote = get_quote()
