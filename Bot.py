@@ -5,6 +5,7 @@ import json
 import random
 from datetime import datetime
 
+
 client = discord.Client()
 sad_words = ["sad", "depressed", "unhappy", "angry", "miserable"]
 a=0
