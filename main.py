@@ -8,9 +8,11 @@ from datetime import datetime
 from discord.ext import commands
 from data import *
 from methods import *
+
 bot = commands.Bot(command_prefix='$')
+from discord.ext.commands import Bot
 
-
+songplayer = 'https://www.youtube.com/watch?v=eWLVBP3VrO4'
 
 
 @bot.command()
@@ -24,6 +26,7 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     print('its woking hombre')
 
+
 @bot.command()
 async def quotes(ctx):
     quote = getQuotes()
@@ -31,13 +34,35 @@ async def quotes(ctx):
 
 
 @bot.command()
-async def play(ctx,url:str):
+async def play(ctx):
+    song_there = os.path.isfile('song.mp3')
+    try:
+        if song_there:
+            os.remove('song.mp3')
+    except PermissionError:
+        await ctx.send('Wait for the current playing musisc to end or use the Stop command')
+        return
+
+    # lets bot join the channel
     voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='General')
-    voice = discord.utils.get(bot.voice_clients,guild =ctx.guild)
-    if not voice.is_connected():
-        await voiceChannel.connect()
+    await voiceChannel.connect()
+    voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
 
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
 
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([songplayer])
+    for file in os.listdir("./"):
+        if file.endswith(".mp3"):
+            os.rename(file, "song.mp3")
+    voice.play(discord.FFmpegPCMAudio("song.mp3"))
 
 
 @bot.command()
@@ -48,13 +73,15 @@ async def leave(ctx):
     else:
         await ctx.channel.send("No bot is connected my dude!")
 
+
 @bot.command()
-async  def pause(ctx):
+async def pause(ctx):
     voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
     if voice.is_playing():
         voice.pause()
     else:
         await ctx.channel.send('Nothing is playing')
+
 
 @bot.command()
 async def resume(ctx):
@@ -64,10 +91,18 @@ async def resume(ctx):
     else:
         await ctx.channel.send('Audio is playing')
 
+
 @bot.command()
 async def stop(ctx):
     voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
     voice.stop()
+
+
+@bot.command()
+async def bmi(ctx, weight: float, height: float):
+    rBmi = getBmi(weight, height)
+    await ctx.send(rBmi)
+
 
 """@bot.event
 async def on_message(message):
@@ -133,5 +168,14 @@ async def on_message(message):
 
         await bot.process_commands(message)"""
 
+#Todo: add other commands
+@bot.command(
+    help="Uses come crazy logic to determine if pong is actually the correct value or not.",
+    brief="Prints pong back to the channel."
+)
+async def ping(ctx):
+    await ctx.channel.send("pong")
+
+
 # client.run("ODEyNjc3MTIwNTc1Nzk5Mjk4.YDEOjA.Y6HjkMF_rekDX6Ur01CwLxOznPY")
-bot.run("ODEyNjc3MTIwNTc1Nzk5Mjk4.YDEOjA.KidluEqGXMA64dGMrtElS3AycjQ")
+bot.run("")
