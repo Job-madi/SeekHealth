@@ -2,6 +2,8 @@ import discord
 import requests
 import json
 import random
+import youtube_dl
+import os
 from datetime import datetime
 from discord.ext import commands
 from data import *
@@ -27,6 +29,45 @@ async def quotes(ctx):
     quote = getQuotes()
     await ctx.channel.send(f'>> {quote} <<')
 
+
+@bot.command()
+async def play(ctx,url:str):
+    voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='General')
+    voice = discord.utils.get(bot.voice_clients,guild =ctx.guild)
+    if not voice.is_connected():
+        await voiceChannel.connect()
+
+
+
+
+@bot.command()
+async def leave(ctx):
+    voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+    if voice.is_connected():
+        await voice.disconnect()
+    else:
+        await ctx.channel.send("No bot is connected my dude!")
+
+@bot.command()
+async  def pause(ctx):
+    voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+    if voice.is_playing():
+        voice.pause()
+    else:
+        await ctx.channel.send('Nothing is playing')
+
+@bot.command()
+async def resume(ctx):
+    voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+    if voice.is_paused():
+        voice.resume()
+    else:
+        await ctx.channel.send('Audio is playing')
+
+@bot.command()
+async def stop(ctx):
+    voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+    voice.stop()
 
 """@bot.event
 async def on_message(message):
@@ -93,4 +134,4 @@ async def on_message(message):
         await bot.process_commands(message)"""
 
 # client.run("ODEyNjc3MTIwNTc1Nzk5Mjk4.YDEOjA.Y6HjkMF_rekDX6Ur01CwLxOznPY")
-bot.run("ODEyNjc3MTIwNTc1Nzk5Mjk4.YDEOjA.Y6HjkMF_rekDX6Ur01CwLxOznPY")
+bot.run("ODEyNjc3MTIwNTc1Nzk5Mjk4.YDEOjA.KidluEqGXMA64dGMrtElS3AycjQ")
