@@ -1,12 +1,118 @@
 import random
 facts_ = (
     'Laughing is good for the heart and can increase blood flow by 20 percent.',
-    ' Your skin works hard. Not only is it the largest organ in the body, but it defends against disease and infection, regulates your temperature and aids in vitamin production.',
+    'Your skin works hard. Not only is it the largest organ in the body, but it defends against disease and infection, regulates your temperature and aids in vitamin production.',
     'Always look on the bright side: being an optimist can help you live longer.',
-    ' Exercise will give you more energy, even when you’re tired.Pin it for later!',
-    'Sitting and sleeping are great in moderation, but too much can increase your chances of an early death.'
+    'Exercise will give you more energy, even when you’re tired.Pin it for later!',
+    'Sitting and sleeping are great in moderation, but too much can increase your chances of an early death.',
+    'Music improves workout performance',
+    'Exercising improves brain performance',
+    'Working out sharpens your memory',
+    '36 million people in the US regularly practice yoga.',
+    '72% of yoga practitioners are women.',
+    'Male yoga practitioners are known as ‘yogis’, female practitioners are known as ‘yoginis’.',
+    'Yoga is the most commonly used complementary health approach',
+    'There are more than 100 styles of yoga!',
+    'At any one time there are over 60 million yoga posts trending on Instagram!',
+    'Running burns calories!',
+    'More muscle mass = burning more fat while resting',
+    'Exercise prevents signs of ageing',
+    'A pound of muscle burns three times more calories than a pound of fat',
+    'Workouts can improve the look of your skin',
+    'Exercising boosts self-confidence',
+    'Working out enables you to sleep better',
+    'Teaching yoga is becoming an increasingly popular career choice.',
+    'Yoga is over 5,000 years old.',
+    'The word ‘yoga’ comes from the Sanskrit language and literally means ‘union’.',
+    'Yoga was originally practiced as a form of healing.',
+    'Yoga is now actively promoted as a sport.',
+    'Yoga can work every muscle in your body.',
+    'Yoga boosts your immune system.',
+    'Yoga classes twice each week can help to ease depression.',
+    'Those suffering from anxiety could benefit from practicing yoga.',
+    'Meditation can improve your memory',
+    'Meditation can slow down, or even prevent, some neurodegenerative diseases.',
+    'Meditation can help to reduce blood pressure.',
+    'Regular meditation leads to neuroplasticity in the brain.',
+    'Meditation can sometimes be more effective than sleep.',
+    'Meditation can be a more effective painkiller than  morphine.',
+    'Routine meditation can make making decisions easier.',
+    'Consistent meditation is more important than lengthy meditation.',
+    'The brain functions better with meditation.',
+    'Even heart health can be improved through meditation.',
+    'Thousands of people have overcome addictions using mindful meditation.',
+    'Meditation reduces stress.',
+    'Meditation can improve attendtion span',
+    'Meditating can increase kindness.',
+    'Meditation can keep us from aging.',
+
+
 )
-#Todo: Please add more quotes to the list
+
+
+
+quotes_ = (
+'“The same boiling water that softens the potato hardens the egg.It’s what you’re made of.Not the circumstances.” – Unknown',
+'“If we have the attitude that it’s going to be a great day it usually is.” – Catherine Pulsifier',
+'“Yoga is not a religion. It is a science, science of well-being, science of youthfulness, science of integrating body, mind and soul” – Amit Ray.',
+'“You can either experience the pain of discipline or the pain of regret.The choice is yours.”  – Unknown',
+'“Impossible is just an opinion.” – Paulo Coelho',
+'“Your passion is waiting for your courage to catch up.” – Isabelle Lafleche',
+'“Magic is believing in yourself.If you can make that happen, you can make anything happen.” – Johann Wolfgang Von Goethe',
+'“If something is important enough, even if the odds are stacked against you, you should still do it.” – Elon Musk',
+'“Hold the vision, trust the process.” – Unknown',
+'“Don’t be afraid to give up the good to go for the great.” – John D.Rockefeller',
+'“People who wonder if the glass is half empty or full miss the point.The glass is refillable.” – Unknown',
+'“The secret of getting ahead is getting started.” – Mark Twain',
+'“It’s hard to beat a person who never gives up.” – Babe Ruth',
+'“If people are doubting how far you can go, go so far that you can’t hear them anymore.” – Michele Ruiz',
+'“Everything you can imagine is real.”― Pablo Picasso',
+'“Happiness is not something ready made. It comes from your own actions.” ― Dalai Lama XIV',
+'“Whatever you are, be a good one.” ― Abraham Lincoln',
+
+'“The hard days are what make you stronger.” – Aly Raisman',
+'“Keep your eyes on the stars, and your feet on the ground.” – Theodore Roosevelt',
+'“You can waste your lives drawing lines. Or you can live your life crossing them.” – Shonda Rhimes',
+'“You’ve got to get up every morning with determination if you’re going to go to bed with satisfaction.” – George Lorimer',
+'“In a gentle way, you can shake the world.” – Mahatma Gandhi',
+'“The miracle is not that we do this work, but that we are happy to do it.” – Mother Teresa',
+'“Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway.” – Earl Nightingale',
+'“The big secret in life is that there is no secret. Whatever your goal, you can get there if you’re willing to work.” – Oprah Winfrey',
+'“If you cannot do great things, do small things in a great way.” – Napoleon Hill',
+
+
+'“Don’t limit your challenges. Challenge your limits.” – Unknown',
+'“Whenever you find yourself doubting how far you can go, just remember how far you have come.” – Unknown',
+'“Everyone has inside them a piece of good news. The good news is you don’t know how great you can be! How much you can love! What you can accomplish! And what your potential is.” – Anne Frank',
+'“Some luck lies in not getting what you thought you wanted but getting what you have, which once you have got it you may be smart enough to see is what you would have wanted had you known.” – Garrison Keillor',
+'“Don’t quit yet, the worst moments are usually followed by the most beautiful silver linings. You have to stay strong, remember to keep your head up and remain hopeful.” – Unknown',
+'“When written in Chinese the word “crisis” is composed of two characters – one represents danger and the other represents opportunity.” – John F Kennedy',
+'“Good. Better. Best. Never let it rest. ‘Til your good is better and your better is best.” – St. Jerome.',
+'“Dreams don’t work unless you do.” – John C. Maxwell',
+'“Go the extra mile. It’s never crowded there.” – Dr. Wayne D. Dyer',
+'“Keep your face always toward the sunshine – and shadows will fall behind you.” – Walt Whitman',
+'“What defines us is how well we rise after falling.” – Lionel from Maid in Manhattan Movie',
+'”H.O.P.E. = Hold On. Pain Ends.”',
+'”Make each day your masterpiece.” – John Wooden',
+'“Wherever you go, go with all your heart” – Confucius',
+'“Turn your wounds into wisdom” – Oprah',
+'“We can do anything we want to if we stick to it long enough.” – Helen Keller',
+'“Begin anywhere.” – John Cage',
+'“You’re so much stronger than your excuses“',
+'“Don’t compare yourself to others. Be like the sun and the moon and shine when it’s your time.“',
+'“Don’t Quit“',
+'“Don’t tell everyone your plans, instead show them your results“',
+'“I choose to make the rest of my life, the best of my life.” – Louise Hay',
+'“Nothing can dim the light that shines from within.” – Maya Angelou',
+'“Be so good they can’t ignore you.” – Steve Martin“',
+'“Take criticism seriously, but not personally. If there is truth or merit in the criticism, try to learn from it. Otherwise, let it roll right off you.” – Hillary Clinton',
+'“This is a reminder to you to create your own rule book, and live your life the way you want it.” – Reese Evans',
+'“If you don’t get out of the box you’ve been raised in, you won’t understand how much bigger the world is.” – Angelina Jolie',
+
+
+)
+
+
 sad_words = ["sad", "depressed", "unhappy", "angry", "miserable"]
 a = 0
 starter_encouragements = [
@@ -14,17 +120,3 @@ starter_encouragements = [
     "Hang in there.",
     "You are a great person / bot!"
 ]
-
-quotes_ = (
-    '“The same boiling water that softens the potato hardens the egg.It’s what you’re made of.Not the circumstances.” – Unknown',
-   ' “If we have the attitude that it’s going to be a great day it usually is.” – Catherine Pulsifier',
-    '“You can either experience the pain of discipline or the pain of regret.The choice is yours.”  – Unknown',
-   ' “Impossible is just an opinion.” – Paulo Coelho',
-    '“Your passion is waiting for your courage to catch up.” – Isabelle Lafleche',
-    '“Magic is believing in yourself.If you can make that happen, you can make anything happen.” – Johann Wolfgang Von Goethe',
-   ' “If something is important enough, even if the odds are stacked against you, you should still do it.” – Elon Musk',
-   ' “Hold the vision, trust the process.” – Unknown',
-   ' “Don’t be afraid to give up the good to go for the great.” – John D.Rockefeller',
-    '“People who wonder if the glass is half empty or full miss the point.The glass is refillable.” – Unknown',
-#Todo: Please add more quotes
-)
