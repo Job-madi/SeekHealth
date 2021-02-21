@@ -12,7 +12,10 @@ from methods import *
 bot = commands.Bot(command_prefix='$')
 from discord.ext.commands import Bot
 
-songplayer = 'https://www.youtube.com/watch?v=eWLVBP3VrO4'
+songplayer = 'https://www.youtube.com/watch?v=VIrOfWLYqKI'
+songplayerex = 'https://www.youtube.com/watch?v=-Gel0z3lJms'
+songplayeryo = 'https://www.youtube.com/watch?v=VIrOfWLYqKI'
+songplayermed = 'https://www.youtube.com/watch?v=cI4ryatVkKw'
 
 
 @bot.command()
@@ -34,7 +37,7 @@ async def quotes(ctx):
 
 
 @bot.command()
-async def play(ctx):
+async def playmeditation(ctx):
     song_there = os.path.isfile('song.mp3')
     try:
         if song_there:
@@ -58,7 +61,69 @@ async def play(ctx):
     }
 
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([songplayer])
+        ydl.download([songplayermed])
+    for file in os.listdir("./"):
+        if file.endswith(".mp3"):
+            os.rename(file, "song.mp3")
+    voice.play(discord.FFmpegPCMAudio("song.mp3"))
+
+@bot.command()
+async def playexercise(ctx):
+    song_there = os.path.isfile('song.mp3')
+    try:
+        if song_there:
+            os.remove('song.mp3')
+    except PermissionError:
+        await ctx.send('Wait for the current playing musisc to end or use the Stop command')
+        return
+
+    # lets bot join the channel
+    voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='General')
+    await voiceChannel.connect()
+    voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([songplayerex])
+    for file in os.listdir("./"):
+        if file.endswith(".mp3"):
+            os.rename(file, "song.mp3")
+    voice.play(discord.FFmpegPCMAudio("song.mp3"))
+
+@bot.command()
+async def playyoga(ctx):
+    song_there = os.path.isfile('song.mp3')
+    try:
+        if song_there:
+            os.remove('song.mp3')
+    except PermissionError:
+        await ctx.send('Wait for the current playing musisc to end or use the Stop command')
+        return
+
+    # lets bot join the channel
+    voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='General')
+    await voiceChannel.connect()
+    voice = discord.utils.get(bot.voice_clients, guild=ctx.guild)
+
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([songplayeryo])
     for file in os.listdir("./"):
         if file.endswith(".mp3"):
             os.rename(file, "song.mp3")
@@ -103,8 +168,12 @@ async def bmi(ctx, weight: float, height: float):
     rBmi = getBmi(weight, height)
     await ctx.send(rBmi)
 
+@bot.command()
+async def meditate(ctx):
+    await ctx.channel.send("use command '$startmeditation' and start meditating. When you're done, use command '$stopmeditation' to see how long did you meditate :)")
 
-"""@bot.event
+
+@bot.event
 async def on_message(message):
     if message.author == bot.user:
         return
@@ -117,56 +186,23 @@ async def on_message(message):
     if any(word in msg for word in sad_words):
         await message.channel.send(random.choice(starter_encouragements))
 
-    if message.content.startswith('seekhealth'):
-        await message.channel.send(
-            "Here is a list of commands you can use for this bot\n\n!bmi - to calculate you body mass index and tell if its in the acceptable range or not\n\n!diet - to tell you how much should be your daily calorie intake according to your needs\n\n!meditate - to let you meditate and calculate the duration for which you meditated\n  !startmeditation - start meditation\n  !stopmeditation - stop meditation and see the duration for which you meditated\n\n!playmusic - play a playlist to according to your choice for either meditation, yoga or workout\n  !meditationmusic - play music playlist best suitable for meditation\n  !workoutmusic - play music playlist best suitable for workout\n  !yogamusic - play music playlist best suitable for yoga")
 
-    elif message.content.startswith('!inspire'):
-        quote = get_quote()
-        await message.channel.send(quote)
-
-    elif message.content.startswith('!hello'):
-        await message.channel.send("Hey")
-
-    elif message.content.startswith('!bmi'):
-        {
-            await message.channel.send("Now I'll calculate your bmi.")
-        }
-    elif message.content.startswith('!diet'):
-        {
-            await message.channel.send("Let me know few things and I'll tell you how much should you eat in a day")
-        }
-
-    elif message.content.startswith('!meditate'):
-        {
-            await message.channel.send(
-                "use command '!startmeditation' and start meditating. When you're done, use command '!stopmeditation' to see how long did you meditate :)")
-        }
-    elif message.content.startswith('!startmeditation'):
+    elif message.content.startswith('$startmeditation'):
         {
 
             await message.channel.send("current time:" + current_time1 + " \ngoodluck with your meditation")
         }
 
-    elif message.content.startswith('!stopmeditation'):
+    elif message.content.startswith('$stopmeditation'):
         {
 
-            await message.channel.send(
-                "current time:" + current_time2 + " \nyou meditated for a total of " + "*gotta include time difference here*")
+            await message.channel.send("current time:" + current_time2)
         }
 
-    elif message.content.startswith('!playmusic'):
-        {
-            await message.channel.send(
-                "'!musicmeditation' - meditative music playlist\n'!musicworkout' - workout music playlist")
-        }
 
-    elif message.content.startswith('!facts'):
-        {
 
-        }
 
-        await bot.process_commands(message)"""
+    await bot.process_commands(message)
 
 #Todo: add other commands
 @bot.command(
@@ -178,4 +214,4 @@ async def ping(ctx):
 
 
 # client.run("ODEyNjc3MTIwNTc1Nzk5Mjk4.YDEOjA.Y6HjkMF_rekDX6Ur01CwLxOznPY")
-bot.run("")
+bot.run("ODEyNjc3MTIwNTc1Nzk5Mjk4.YDEOjA.lS5QoXWn40lBy5KOgruwFRIqwkQ")
