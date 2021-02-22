@@ -1,5 +1,5 @@
 # SeekHealth
-Python bot to take care of you and help you out achieve your health goals!
+Discord bot to take care of you and help you out achieve your health goals!
 submitted for MLH's Hack and Wellness hackathon
 
 # Framework
