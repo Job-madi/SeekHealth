@@ -4,8 +4,7 @@ submitted for MLH's Hack and Wellness hackathon
 
 # Framework
 built using python
-used Google APIs
-hosted the bot on Google Cloud to keep it online 24/7
+Bot is hosted on Google Cloud to keep it online 24/7
 
 # Commands
 list of functional commands <br />
