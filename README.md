@@ -2,9 +2,8 @@
 Discord bot to take care of you and help you out achieve your health goals!
 submitted for MLH's Hack and Wellness hackathon
 
-# Framework
-built using python
-Bot is hosted on Google Cloud to keep it online 24/7
+# Language and Library
+python & discord.py
 
 # Commands
 list of functional commands <br />
