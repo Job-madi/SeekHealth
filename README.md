@@ -2,9 +2,6 @@
 Discord bot to take care of you and help you out achieve your health goals!
 submitted for MLH's Hack and Wellness hackathon
 
-# Language and Library
-python & discord.py
-
 # Commands
 list of functional commands <br />
 $help            - shows up all commands <br />
